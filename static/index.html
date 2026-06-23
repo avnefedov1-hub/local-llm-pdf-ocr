@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF OCR + Ollama Chat</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>PDF OCR + Vikhr Chat</h1>
+    <div id="health-status" class="health">Checking Ollama...</div>
+  </header>
+
+  <main class="layout">
+    <section class="panel document-panel">
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" id="file-input" accept=".pdf" hidden>
+        <p>Drop PDF here or <button type="button" id="browse-btn" class="link-btn">choose a file</button></p>
+      </div>
+
+      <div id="ocr-progress" class="progress hidden"></div>
+
+      <label class="field-label" for="document-text">Recognized text</label>
+      <textarea id="document-text" class="document-text" placeholder="Text appears here after OCR..."></textarea>
+
+      <div class="actions">
+        <button type="button" id="summarize-btn" class="btn">Summarize</button>
+        <select id="translate-lang" class="select">
+          <option value="en">Translate to EN</option>
+          <option value="ru">Translate to RU</option>
+        </select>
+        <button type="button" id="translate-btn" class="btn">Translate</button>
+      </div>
+
+      <label class="field-label" for="custom-prompt">Custom prompt</label>
+      <textarea id="custom-prompt" class="custom-prompt" rows="2" placeholder="Describe what to do with the document..."></textarea>
+      <button type="button" id="custom-btn" class="btn">Run prompt</button>
+    </section>
+
+    <section class="panel chat-panel">
+      <div class="chat-header">
+        <h2>Chat with Vikhr</h2>
+        <label class="checkbox-label">
+          <input type="checkbox" id="use-document" checked>
+          Use document as context
+        </label>
+      </div>
+
+      <div id="chat-messages" class="chat-messages"></div>
+
+      <div class="chat-input-row">
+        <textarea id="chat-input" class="chat-input" rows="2" placeholder="Type your message..."></textarea>
+        <div class="chat-buttons">
+          <button type="button" id="chat-send" class="btn primary">Send</button>
+          <button type="button" id="chat-stop" class="btn hidden">Stop</button>
+          <button type="button" id="chat-clear" class="btn secondary">Clear</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
